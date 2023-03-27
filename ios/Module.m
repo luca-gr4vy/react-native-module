@@ -1,14 +1,20 @@
 #import <React/RCTBridgeModule.h>
+#import <React/RCTEventEmitter.h>
 
 @interface RCT_EXTERN_MODULE(Module, NSObject)
 
-RCT_EXTERN_METHOD(multiply:(float)a withB:(float)b
-                 withResolver:(RCTPromiseResolveBlock)resolve
-                 withRejecter:(RCTPromiseRejectBlock)reject)
-
-+ (BOOL)requiresMainQueueSetup
-{
-  return NO;
-}
-
+RCT_EXTERN_METHOD(
+  showPaymentSheet:(NSString *)gr4vyId
+    token:(NSString *)token
+    amount:(double)amount
+    currency:(NSString *)currency
+    country:(NSString *)country
+    buyerId:(NSString *)buyerId
+    environment:(NSString *)environment
+    errorCallback:(RCTResponseSenderBlock)errorCallback
+    successCallback:(RCTResponseSenderBlock)successCallback)
+@end
+  
+@interface RCT_EXTERN_MODULE(ModuleEvents, RCTEventEmitter)
+  RCT_EXTERN_METHOD(supportedEvents)
 @end
